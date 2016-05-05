@@ -9,58 +9,63 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by Exerosis.
  */
 public class Game extends Component {
-    private final Lock lock = new ReentrantLock();
+    private final ReentrantLock lock = new ReentrantLock();
     private boolean enabled = false;
 
     public static void main(String[] args) {
         new Thread(){
             @Override
             public void run() {
-                new Game(){
+                Game game = new Game() {
                     @Override
                     protected void onEnable() {
                         System.out.println("Enabled Game 1");
-                        new Thread(){
-                          @Override
-                          public void run() {
-                              try {
-                                  Thread.sleep(5000);
-                              } catch (InterruptedException e) {
-                                  e.printStackTrace();
-                              }
-                              disable();
-                          }
-                        }.run();
                     }
 
                     @Override
                     protected void onDisable() {
                         System.out.println("Disabled Game 1");
                     }
-                }.enable();
+                };
+                game.enable();
+                new Thread(){
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        game.disable();
+                    }
+                }.run();
 
-                new Game(){
+
+
+
+                Game game2 = new Game() {
                     @Override
                     protected void onEnable() {
                         System.out.println("Enabled Game 2");
-                        new Thread(){
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(5000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                disable();
-                            }
-                        }.run();
                     }
 
                     @Override
                     protected void onDisable() {
                         System.out.println("Disabled Game 2");
                     }
-                }.enable();
+                };
+                game2.enable();
+                new Thread(){
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        game2.disable();
+                    }
+                }.run();
             }
         }.run();
     }
@@ -71,14 +76,15 @@ public class Game extends Component {
     }
 
     @Override
-    protected void onEnable() {
-        super.onEnable();
+    public void enable() {
+        super.enable();
         lock.lock();
     }
 
     @Override
-    protected void onDisable() {
-        super.onDisable();
-        lock.unlock();
+    public void disable() {
+        super.disable();
+        if (lock.isHeldByCurrentThread())
+            lock.unlock();
     }
 }
