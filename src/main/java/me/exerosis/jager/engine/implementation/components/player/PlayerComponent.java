@@ -1,6 +1,6 @@
-package me.exerosis.jager.gameengine.implementation.components.player;
+package me.exerosis.jager.engine.implementation.components.player;
 
-import me.exerosis.jager.gameengine.core.component.ListenerComponent;
+import me.exerosis.jager.engine.implementation.components.ListenerComponent;
 import org.bukkit.entity.Player;
 
 import java.util.function.Predicate;

@@ -1,4 +1,4 @@
-package me.exerosis.jager.gameengine.implementation.components.player.gadget;
+package me.exerosis.jager.engine.implementation.components.player.gadget;
 
 import java.util.function.Predicate;
 
@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.exerosis.jager.gameengine.Main;
+import me.exerosis.jager.engine.Main;
 
 public class SheepGadget extends Gadget {
 

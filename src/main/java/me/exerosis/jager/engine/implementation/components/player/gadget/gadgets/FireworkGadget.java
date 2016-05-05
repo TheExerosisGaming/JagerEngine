@@ -1,4 +1,4 @@
-package me.exerosis.jager.gameengine.implementation.components.player.gadget;
+package me.exerosis.jager.engine.implementation.components.player.gadget;
 
 import java.util.Random;
 import java.util.function.Predicate;

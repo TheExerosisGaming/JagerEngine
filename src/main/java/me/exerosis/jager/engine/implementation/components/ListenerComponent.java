@@ -1,6 +1,7 @@
-package me.exerosis.jager.gameengine.core.component;
+package me.exerosis.jager.engine.implementation.components;
 
-import me.exerosis.jager.gameengine.Main;
+import me.exerosis.jager.engine.Main;
+import me.exerosis.jager.engine.core.component.Component;
 import org.bukkit.event.Listener;
 
 /**
@@ -8,12 +9,12 @@ import org.bukkit.event.Listener;
  */
 public class ListenerComponent extends Component implements Listener {
     @Override
-    public void onEnable() {
+    protected void onEnable() {
         Main.registerEvents(this);
     }
 
     @Override
-    public void onDisable() {
+    protected void onDisable() {
         Main.unregisterEvents(this);
     }
 }

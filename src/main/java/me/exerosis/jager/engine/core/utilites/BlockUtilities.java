@@ -1,4 +1,4 @@
-package me.exerosis.jager.gameengine.core.utilites;
+package me.exerosis.jager.engine.core.utilites;
 
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;

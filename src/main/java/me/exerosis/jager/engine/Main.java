@@ -1,4 +1,4 @@
-package me.exerosis.jager.gameengine;
+package me.exerosis.jager.engine;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;

@@ -1,10 +1,10 @@
-package me.exerosis.jager.gameengine.implementation.components.player.gadget;
+package me.exerosis.jager.engine.implementation.components.player.gadget;
 
 import java.util.function.Predicate;
 
 import org.bukkit.entity.Player;
 
-import me.exerosis.jager.gameengine.implementation.components.player.PlayerComponent;
+import me.exerosis.jager.engine.implementation.components.player.PlayerComponent;
 
 public class Gadget extends PlayerComponent {
 

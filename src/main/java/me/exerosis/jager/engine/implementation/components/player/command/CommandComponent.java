@@ -1,6 +1,6 @@
-package me.exerosis.jager.gameengine.implementation.components.player.command;
+package me.exerosis.jager.engine.implementation.components.player.command;
 
-import me.exerosis.jager.gameengine.implementation.components.player.PlayerComponent;
+import me.exerosis.jager.engine.implementation.components.player.PlayerComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;

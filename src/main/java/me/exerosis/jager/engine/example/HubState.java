@@ -1,7 +1,7 @@
-package me.exerosis.jager.gameengine.implementation.components.player.gadget.example;
+package me.exerosis.jager.engine.implementation.components.player.gadget.example;
 
-import me.exerosis.jager.gameengine.core.state.State;
-import me.exerosis.jager.gameengine.implementation.components.player.gadget.Gadget;
+import me.exerosis.jager.engine.core.State;
+import me.exerosis.jager.engine.implementation.components.player.gadget.Gadget;
 
 public class HubState extends State {
 	private Gadget[] gadgets = new Gadget[] {};
@@ -11,14 +11,14 @@ public class HubState extends State {
 	}
 
 	@Override
-	public void onEnable() {
+	protected void onEnable() {
 		for (Gadget gadget : gadgets) {
 			gadget.enable();
 		}
 	}
 
 	@Override
-	public void onDisable() {
+	protected void onDisable() {
 		for (Gadget gadget : gadgets) {
 			gadget.disable();
 		}

@@ -1,6 +1,6 @@
-package me.exerosis.jager.gameengine.implementation.components.player.disablers;
+package me.exerosis.jager.engine.implementation.components.player.disablers;
 
-import me.exerosis.jager.gameengine.implementation.components.player.PlayerComponent;
+import me.exerosis.jager.engine.implementation.components.player.PlayerComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;

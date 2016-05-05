@@ -1,4 +1,4 @@
-package me.exerosis.jager.gameengine.core.component;
+package me.exerosis.jager.engine.core.component;
 
 public abstract class EnableableImplementation implements Enableable {
     private boolean enabled = false;

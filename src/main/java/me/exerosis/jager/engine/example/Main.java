@@ -1,9 +1,9 @@
-package me.exerosis.jager.gameengine.implementation.components.player.gadget.example;
+package me.exerosis.jager.engine.example;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.exerosis.jager.gameengine.implementation.components.player.gadget.FireworkGadget;
+import me.exerosis.jager.engine.implementation.components.player.gadget.FireworkGadget;
 
 public class Main extends JavaPlugin {
 	public void onEnable() {
@@ -11,7 +11,5 @@ public class Main extends JavaPlugin {
 		// playerList.contains or something.
 		FireworkGadget fireworkGadget = new FireworkGadget(player -> player.hasPermission("gadget.fireworks"));
 		Bukkit.getPluginManager().registerEvents(fireworkGadget, this);
-		
-		new HubState(fireworkGadget).enable();
 	}
 }
