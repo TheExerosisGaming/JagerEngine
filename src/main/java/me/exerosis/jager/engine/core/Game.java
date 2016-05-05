@@ -20,12 +20,17 @@ public class Game extends Component {
                     @Override
                     protected void onEnable() {
                         System.out.println("Enabled Game 1");
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        disable();
+                        new Thread(){
+                          @Override
+                          public void run() {
+                              try {
+                                  Thread.sleep(5000);
+                              } catch (InterruptedException e) {
+                                  e.printStackTrace();
+                              }
+                              disable();
+                          }
+                        }.run();
                     }
 
                     @Override
@@ -38,12 +43,17 @@ public class Game extends Component {
                     @Override
                     protected void onEnable() {
                         System.out.println("Enabled Game 2");
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        disable();
+                        new Thread(){
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(5000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                disable();
+                            }
+                        }.run();
                     }
 
                     @Override
@@ -61,25 +71,14 @@ public class Game extends Component {
     }
 
     @Override
-    public synchronized void enable() {
-        if (!isEnabled())
-            return;
-        onDisable();
-//        lock.lock();
-        enabled = false;
+    protected void onEnable() {
+        super.onEnable();
+        lock.lock();
     }
 
     @Override
-    public synchronized void disable() {
-        if (!isEnabled())
-            return;
-        onDisable();
-//        lock.unlock();
-        enabled = false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
+    protected void onDisable() {
+        super.onDisable();
+        lock.unlock();
     }
 }
