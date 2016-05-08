@@ -1,5 +1,10 @@
 package me.exerosis.jager.engine.implementation.components.player;
 
+import me.exerosis.jager.engine.implementation.components.EventComponent;
+import org.bukkit.entity.Player;
+
+import java.util.function.Predicate;
+
 /**
  * Created by Exerosis.
  */
