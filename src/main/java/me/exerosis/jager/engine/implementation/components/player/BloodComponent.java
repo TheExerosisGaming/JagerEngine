@@ -1,4 +1,4 @@
-package me.exerosis.jager.engine.implementation.components.player.player;
+package me.exerosis.jager.engine.implementation.components.player;
 
 import java.util.ArrayList;
 import java.util.HashMap;

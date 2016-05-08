@@ -2,7 +2,8 @@ package me.exerosis.jager.engine.implementation.components.worlds;
 
 import me.exerosis.jager.engine.core.utilites.FileUtilities;
 import me.exerosis.jager.engine.implementation.components.EventComponent;
-import me.exerosis.jager.engine.implementation.components.printer.ConsolePrinter;
+import me.exerosis.jager.engine.implementation.components.printer.printers.ConsolePrinter;
+import me.exerosis.jager.engine.implementation.components.printer.PrintLevel;
 import me.exerosis.jager.engine.implementation.components.scheduler.SchedulerComponent;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
@@ -19,41 +20,40 @@ import java.io.*;
  * Created by Exerosis.
  */
 public class WorldComponent extends EventComponent {
-    private final ConsolePrinter logger;
+    private final ConsolePrinter consolePrinter;
     private final SchedulerComponent schedulerComponent;
     private final File worldFile;
     private String kickMessage;
     private File backupFile;
 
-    public WorldComponent(ConsolePrinter logger, SchedulerComponent schedulerComponent, File worldFile, String kickMessage) {
-        this.logger = logger;
+    public WorldComponent(ConsolePrinter consolePrinter, SchedulerComponent schedulerComponent, File worldFile, String kickMessage) {
+        this.consolePrinter = consolePrinter;
         this.schedulerComponent = schedulerComponent;
         this.worldFile = worldFile;
         this.kickMessage = kickMessage;
         backupFile = new File(worldFile.getPath() + "/backup.tmp");
     }
 
-
     public void load() {
-        System.out.println("[WorldComponent]Trying to load world.");
+        print("Trying to load world.");
 
         if (!worldFile.getPath().startsWith(Bukkit.getWorldContainer().getParent()))
-            System.err.println("[WorldComponent]Failed to load world! '" + worldFile.getPath() + "' is not in the server folder.");
+            print("Failed to load world! '" + worldFile.getPath() + "' is not in the server folder.");
         if (!worldFile.exists())
-            System.err.println("[WorldComponent]Failed to load world! No such file or directory: '" + worldFile.getPath() + "'.");
+            print("Failed to load world! No such file or directory: '" + worldFile.getPath() + "'.");
         if (!worldFile.isDirectory())
-            System.err.println("[WorldComponent]Failed to load world! Could not find world at '" + worldFile.getPath() + "'.");
+            print("Failed to load world! Could not find world at '" + worldFile.getPath() + "'.");
 
         File worldData = new File(worldFile.getPath() + "/level.dat");
 
         if (!worldData.exists())
-            System.err.println("[WorldComponent]Failed to load world! Could not find expected 'level.dat' in directory '" + worldFile.getPath() + "'.");
+            print("Failed to load world! Could not find expected 'level.dat' in directory '" + worldFile.getPath() + "'.");
 
         WorldCreator worldCreator = new WorldCreator("");
         worldCreator.type(WorldType.FLAT);
         Bukkit.createWorld(worldCreator);
 
-        System.out.println("[WorldComponent]WorldComponent can be loaded. Loading world.");
+        print("World can be loaded. Loading world.");
     }
 
     @EventHandler
@@ -85,7 +85,7 @@ public class WorldComponent extends EventComponent {
     }
 
     public void unload() {
-        System.out.println("[WorldComponent]Trying to unload world!");
+        print("Trying to unload world!");
         World world = Bukkit.getWorld(worldFile.getName());
 
         if (world == null)
@@ -98,9 +98,13 @@ public class WorldComponent extends EventComponent {
         //Wait 1 second before unloading the world
         schedulerComponent.registerTask(() -> {
             if (!Bukkit.unloadWorld(world, false))
-                throw new RuntimeException("[WorldComponent]Unable to unload world, please fix the problem!");
+                throw new RuntimeException("[WorldComponent] Unable to unload world, please fix the problem!");
             onUnload();
         }, 20D);
+    }
+
+    private void print(Object message){
+        consolePrinter.print("[WorldComponent] " + message, PrintLevel.HIGH);
     }
 
     protected void onUnload(){

@@ -1,4 +1,6 @@
-package me.exerosis.jager.engine.implementation.components.printer;
+package me.exerosis.jager.engine.implementation.components.printer.printers;
+
+import me.exerosis.jager.engine.implementation.components.printer.DestinationPrinter;
 
 /**
  * Created by Exerosis.
