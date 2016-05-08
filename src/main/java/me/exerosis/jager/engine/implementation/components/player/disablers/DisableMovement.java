@@ -17,5 +17,4 @@ public class DisableMovement extends PlayerComponent {
         this(playerPredicate);
         this.locationPredicate = locationPredicate;
     }
-
 }

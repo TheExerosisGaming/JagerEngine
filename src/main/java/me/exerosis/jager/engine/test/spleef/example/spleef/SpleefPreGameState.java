@@ -1,6 +1,6 @@
 package me.exerosis.jager.engine.test.spleef.example.spleef;
 
-import me.exerosis.jager.engine.core.State;
+import me.exerosis.jager.engine.core.state.State;
 
 /**
  * Created by Exerosis.

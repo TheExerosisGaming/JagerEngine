@@ -1,4 +1,4 @@
-package me.exerosis.jager.engine.core;
+package me.exerosis.jager.engine.core.state;
 
 import me.exerosis.jager.engine.core.component.EnableableImplementation;
 
