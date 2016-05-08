@@ -1,7 +1,7 @@
 package me.exerosis.jager.engine.implementation.components.worlds;
 
 import me.exerosis.jager.engine.core.utilites.FileUtilities;
-import me.exerosis.jager.engine.implementation.components.ListenerComponent;
+import me.exerosis.jager.engine.implementation.components.EventComponent;
 import me.exerosis.jager.engine.implementation.components.logger.LoggerComponent;
 import me.exerosis.jager.engine.implementation.components.scheduler.SchedulerComponent;
 import org.apache.commons.io.FileUtils;
@@ -18,7 +18,7 @@ import java.io.*;
 /**
  * Created by Exerosis.
  */
-public class WorldComponent extends ListenerComponent {
+public class WorldComponent extends EventComponent {
     private final LoggerComponent logger;
     private final SchedulerComponent schedulerComponent;
     private final File worldFile;

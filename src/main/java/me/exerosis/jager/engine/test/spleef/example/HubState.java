@@ -1,4 +1,4 @@
-package me.exerosis.jager.engine.implementation.components.player.gadget.example;
+package me.exerosis.jager.engine.test.spleef.example;
 
 import me.exerosis.jager.engine.core.State;
 import me.exerosis.jager.engine.implementation.components.player.gadget.Gadget;

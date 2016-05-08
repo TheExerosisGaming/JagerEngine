@@ -1,6 +1,6 @@
 package me.exerosis.jager.engine.implementation.components.player;
 
-import me.exerosis.jager.engine.implementation.components.ListenerComponent;
+import me.exerosis.jager.engine.implementation.components.EventComponent;
 import org.bukkit.entity.Player;
 
 import java.util.function.Predicate;
@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 /**
  * Created by Exerosis.
  */
-public class PlayerComponent extends ListenerComponent {
+public class PlayerComponent extends EventComponent {
     private Predicate<Player> playerPredicate;
 
     public PlayerComponent(Predicate<Player> playerPredicate) {
