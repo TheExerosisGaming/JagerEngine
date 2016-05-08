@@ -3,6 +3,7 @@ package me.exerosis.jager.engine.implementation.components.player;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -16,35 +17,25 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
-import me.exerosis.jager.engine.implementation.components.player.PlayerComponent;
-
 public class BloodComponent extends PlayerComponent {
 
 	private Map<Player, Predicate<Player>> predicates = new HashMap<Player, Predicate<Player>>();
 	private List<Player> players = new ArrayList<Player>();
-	private Map<Player, Item[]> bloodItems = new LinkedHashMap<Player, Item[]>();
+	// We're using LinkedHashMap here because LinkedHashMaps are generally better at the get methods, which is more of what we're doing here.
+	private Map<Player, List<Item>> bloodItems = new LinkedHashMap<Player, List<Item>>();
 	private Plugin plugin;
-	private boolean enabledByDefault;
 
-	public BloodComponent(Plugin plugin, boolean enabledByDefault) {
+	public BloodComponent(Plugin plugin) {
 		this.plugin = plugin;
-		if (enabledByDefault)
-			enable();
-		this.enabledByDefault = enabledByDefault;
 	}
 
 	public void addPlayer(Player p) {
 		players.add(p);
-		predicates.put(p, player -> enabledByDefault);
+		predicates.put(p, getPlayerPredicate());
 	}
 
-	public void addPlayer(Player p, boolean enabled) {
-		players.add(p);
-		predicates.put(p, player -> enabled);
-	}
-
-	public void setEnabledPlayer(Player p, boolean enabled) {
-		predicates.put(p, player -> enabled);
+	public void setEnabledPlayer(Player p) {
+		predicates.put(p, getPlayerPredicate());
 		
 	}
 
@@ -69,7 +60,7 @@ public class BloodComponent extends PlayerComponent {
 	@SuppressWarnings("deprecation")
 	public void onEnable() {
 		for (Player player : getPlayers()) {
-			Item[] items = new Item[4];
+			List<Item> items = new LinkedList<Item>();
 			for (int i = 0; i < 4; i++) {
 				Item itemEntity = player.getWorld().dropItem(player.getLocation(), new ItemStack(Material.getMaterial(351)));
 				ItemStack item = new ItemStack(Material.getMaterial(351));
@@ -77,13 +68,13 @@ public class BloodComponent extends PlayerComponent {
 				itemEntity.setItemStack(item);
 				itemEntity.setPickupDelay(1000);
 				Vector v = new Vector();
-				v.setX(nextFloat(new Random(), 0.4f));
-				v.setZ(nextFloat(new Random(), 0.4f));
-				v.setY(nextFloat(new Random(), 0.5f));
+				v.setX(BloodComponent.nextFloat(0.4f));
+				v.setZ(BloodComponent.nextFloat(0.4f));
+				v.setY(BloodComponent.nextFloat(0.5f));
 				itemEntity.setVelocity(v);
 				itemEntity.setCustomName("§cBlood");
 				itemEntity.setCustomNameVisible(true);
-				items[i] = itemEntity;
+				items.set(i, itemEntity);
 			}
 			bloodItems.put(player, items);
 		}
@@ -92,19 +83,21 @@ public class BloodComponent extends PlayerComponent {
 				for (Player player : getPlayers()) {
 					for (int i = 0; i < 4; i++) {
 						if (bloodItems.get(player) == null) {
+							// error
 							Bukkit.getLogger().info("Player is equal to null!");
 							break;
 						}
-						bloodItems.get(player)[i].remove();
+						bloodItems.get(player).get(i).remove();
 					}
 				}
 			}
 		}, 15l);
 	}
 
-	public float nextFloat(Random r, float maxValue) {
+	public static float nextFloat(float maxValue) {
 		while (true) {
-			float f = r.nextFloat();
+			// creating a new random object each time to create a special seed, to induce more random outcomes.
+			float f = new Random().nextFloat();
 			if (f > maxValue)
 				continue;
 			else
@@ -115,7 +108,7 @@ public class BloodComponent extends PlayerComponent {
 	public void onDisable() {
 		for (Player player : getPlayers()) {
 			for (int i = 0; i < 4; i++) {
-				bloodItems.get(player)[i].remove();
+				bloodItems.get(player).get(i).remove();
 			}
 		}
 	}
