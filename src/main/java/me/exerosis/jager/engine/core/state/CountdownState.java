@@ -37,4 +37,20 @@ public class CountdownState extends State implements Runnable {
         if (timeLeft == 0)
             disable();
     }
+
+    public int getCountdownTime() {
+        return countdownTime;
+    }
+
+    public void setCountdownTime(int countdownTime) {
+        this.countdownTime = countdownTime;
+    }
+
+    public int getTimeLeft() {
+        return timeLeft;
+    }
+
+    public void setTimeLeft(int timeLeft) {
+        this.timeLeft = timeLeft;
+    }
 }

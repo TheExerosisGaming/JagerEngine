@@ -1,4 +1,4 @@
-package me.exerosis.jager.engine.test.spleef.predicate;
+package me.exerosis.jager.engine.test.predicate;
 
 import me.exerosis.jager.engine.core.component.Component;
 

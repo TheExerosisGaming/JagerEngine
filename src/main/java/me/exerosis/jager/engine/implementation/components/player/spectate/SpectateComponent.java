@@ -1,6 +1,6 @@
 package me.exerosis.jager.engine.implementation.components.player.spectate;
 
-import me.exerosis.jager.engine.implementation.components.EventComponent;
+import me.exerosis.jager.engine.implementation.components.player.spectate.event.PlayerEnterSpectateEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;

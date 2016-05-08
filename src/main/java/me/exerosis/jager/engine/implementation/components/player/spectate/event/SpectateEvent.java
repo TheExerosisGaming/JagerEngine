@@ -1,4 +1,4 @@
-package me.exerosis.jager.engine.implementation.components.player.spectate;
+package me.exerosis.jager.engine.implementation.components.player.spectate.event;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;

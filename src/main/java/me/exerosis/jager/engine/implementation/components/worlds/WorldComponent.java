@@ -1,7 +1,6 @@
 package me.exerosis.jager.engine.implementation.components.worlds;
 
 import me.exerosis.jager.engine.core.utilites.FileUtilities;
-import me.exerosis.jager.engine.implementation.components.EventComponent;
 import me.exerosis.jager.engine.implementation.components.printer.printers.ConsolePrinter;
 import me.exerosis.jager.engine.implementation.components.printer.PrintLevel;
 import me.exerosis.jager.engine.implementation.components.scheduler.SchedulerComponent;

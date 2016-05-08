@@ -1,4 +1,4 @@
-package me.exerosis.jager.engine.test.spleef.example.spleef;
+package me.exerosis.jager.engine.implementation.game.spleef;
 
 /**
  * Created by Exerosis.

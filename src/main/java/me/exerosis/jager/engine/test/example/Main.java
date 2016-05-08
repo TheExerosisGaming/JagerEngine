@@ -1,4 +1,4 @@
-package me.exerosis.jager.engine.test.spleef.example;
+package me.exerosis.jager.engine.test.example;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
