@@ -3,7 +3,7 @@ package me.exerosis.jager.engine.test.example;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.exerosis.jager.engine.implementation.components.player.gadget.FireworkGadget;
+import me.exerosis.jager.engine.test.old.gadget.FireworkGadget;
 
 public class Main extends JavaPlugin {
 	public void onEnable() {

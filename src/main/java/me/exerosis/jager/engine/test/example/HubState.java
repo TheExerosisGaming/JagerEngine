@@ -1,7 +1,6 @@
 package me.exerosis.jager.engine.test.example;
 
-import me.exerosis.jager.engine.core.state.State;
-import me.exerosis.jager.engine.implementation.components.player.gadget.Gadget;
+import me.exerosis.jager.engine.test.old.gadget.Gadget;
 
 public class HubState extends State {
 	private Gadget[] gadgets = new Gadget[] {};

@@ -1,13 +1,13 @@
 package me.exerosis.jager.engine.test.predicate;
 
-import me.exerosis.jager.engine.core.component.Component;
+import me.exerosis.jager.engine.core.component.ComponentImplementation;
 
 import java.util.function.Predicate;
 
 /**
  * Created by Exerosis.
  */
-public class DualPredicateComponent<A, B> extends Component {
+public class DualPredicateComponent<A, B> extends ComponentImplementation {
     private Predicate<A> predicateA;
     private Predicate<B> predicateB;
 
