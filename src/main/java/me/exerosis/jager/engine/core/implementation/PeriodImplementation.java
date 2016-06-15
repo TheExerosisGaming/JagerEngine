@@ -7,6 +7,7 @@ import me.exerosis.jager.engine.core.Period;
  */
 public class PeriodImplementation extends StateImplementation implements Period {
     private int ticksRemaining = 0;
+    private int length = 0;
 
     public PeriodImplementation() {
 
@@ -31,10 +32,28 @@ public class PeriodImplementation extends StateImplementation implements Period 
     }
 
     @Override
+    public void enable() {
+        if(!isEnabled())
+            ticksRemaining = length;
+        super.enable();
+    }
+
+    @Override
+    public int getLength() {
+        return length;
+    }
+
+    @Override
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    @Override
     public int getTicksRemaining() {
         return ticksRemaining;
     }
 
+    @Override
     public void setTicksRemaining(int ticksRemaining) {
         this.ticksRemaining = ticksRemaining;
     }

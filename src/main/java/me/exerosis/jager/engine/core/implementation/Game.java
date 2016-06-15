@@ -2,17 +2,20 @@ package me.exerosis.jager.engine.core.implementation;
 
 import me.exerosis.jager.engine.core.Period;
 
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
  * Created by Exerosis.
  */
+
 public class Game extends PeriodImplementation {
-    private Queue<Period> periods;
+    private final Queue<Period> periods;
     private Period currentPeriod;
 
     public Game(Period... periods) {
-
+        this.periods = new LinkedList(Arrays.asList(periods));
     }
 
     @Override
