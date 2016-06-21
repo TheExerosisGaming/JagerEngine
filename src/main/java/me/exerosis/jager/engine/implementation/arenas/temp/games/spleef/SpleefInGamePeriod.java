@@ -1,4 +1,4 @@
-package me.exerosis.jager.engine.implementation.game.spleef;
+package me.exerosis.jager.engine.implementation.arenas.temp.games.spleef;
 
 import me.exerosis.jager.engine.core.implementation.PeriodImplementation;
 

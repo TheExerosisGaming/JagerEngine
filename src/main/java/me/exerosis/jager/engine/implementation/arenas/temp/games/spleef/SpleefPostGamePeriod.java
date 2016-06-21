@@ -1,12 +1,12 @@
-package me.exerosis.jager.engine.implementation.game.spleef;
+package me.exerosis.jager.engine.implementation.arenas.temp.games.spleef;
 
 import me.exerosis.jager.engine.core.implementation.PeriodImplementation;
 
 /**
  * Created by Exerosis.
  */
-public class SpleefPreGamePeriod extends PeriodImplementation {
-    public SpleefPreGamePeriod() {
+public class SpleefPostGamePeriod extends PeriodImplementation {
+    public SpleefPostGamePeriod() {
 
     }
 
