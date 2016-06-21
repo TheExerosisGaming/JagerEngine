@@ -5,9 +5,8 @@ import me.exerosis.jager.engine.core.Period;
 /**
  * Created by Exerosis.
  */
-public class PeriodImplementation extends StateImplementation implements Period {
+public abstract class PeriodImplementation extends StateImplementation implements Period {
     private int ticksRemaining = 0;
-    private int length = 0;
 
     public PeriodImplementation() {
 
@@ -34,18 +33,8 @@ public class PeriodImplementation extends StateImplementation implements Period 
     @Override
     public void enable() {
         if(!isEnabled())
-            ticksRemaining = length;
+            ticksRemaining = getLength();
         super.enable();
-    }
-
-    @Override
-    public int getLength() {
-        return length;
-    }
-
-    @Override
-    public void setLength(int length) {
-        this.length = length;
     }
 
     @Override

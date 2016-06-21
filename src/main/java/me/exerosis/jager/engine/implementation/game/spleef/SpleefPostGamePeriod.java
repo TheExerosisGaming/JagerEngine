@@ -11,8 +11,7 @@ public class SpleefPostGamePeriod extends PeriodImplementation {
     }
 
     @Override
-    protected void onEnable() {
-        //Pull countdown time from config.
-        setTicksRemaining(20*30);
+    public int getLength() {
+        return 600;
     }
 }
