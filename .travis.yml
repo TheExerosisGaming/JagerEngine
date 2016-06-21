@@ -1,14 +1,12 @@
-language: java
 
-script:
- - gradle check
- 
-jdk:
- - oraclejdk8
- 
- notifications:
-  irc: "chat.freenode.net#jagerengine"
-  email:
-   recipients:
-    - addisonparkhurst@gmail.com
-    - exerosis@gmail.com
+jdk: 
+  - oraclejdk8
+language: java
+notifications: 
+  email: 
+    recipients: 
+      - Addisonparkhurst@gmail.com
+      - exerosis@gmail.com
+  irc: "chat.freenode.net#JagerEngine"
+script: 
+  - "gradle check"
