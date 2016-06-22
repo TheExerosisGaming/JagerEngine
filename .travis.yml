@@ -7,6 +7,7 @@ notifications:
     recipients: 
       - Addisonparkhurst@gmail.com
       - exerosis@gmail.com
+      - vst4rbot@gmail.com
   irc: "chat.freenode.net#JagerEngine"
 script: 
   - "gradle check"
