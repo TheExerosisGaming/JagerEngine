@@ -1,6 +1,7 @@
 package me.exerosis.jager.engine.implementation.states.worlds;
 
 import me.exerosis.jager.engine.core.utilites.FileUtilities;
+import me.exerosis.jager.engine.core.utilites.configuration.Configuration;
 import me.exerosis.jager.engine.implementation.states.EventState;
 import me.exerosis.jager.engine.core.utilites.printer.printers.ConsolePrinter;
 import me.exerosis.jager.engine.core.utilites.printer.PrintLevel;
@@ -22,16 +23,22 @@ import java.io.*;
 public class WorldLoadedState extends EventState {
     private final ConsolePrinter consolePrinter;
     private final SchedulerState schedulerState;
+    private Configuration config;
     private final File worldFile;
     private String kickMessage;
     private File backupFile;
 
-    public WorldLoadedState(ConsolePrinter consolePrinter, SchedulerState schedulerState, File worldFile, String kickMessage) {
+    public WorldLoadedState(ConsolePrinter consolePrinter, Configuration config, SchedulerState schedulerState) {
         this.consolePrinter = consolePrinter;
         this.schedulerState = schedulerState;
-        this.worldFile = worldFile;
-        this.kickMessage = kickMessage;
-        backupFile = new File(worldFile.getPath() + "/backup.tmp");
+        this.config = config;
+
+        //TODO Use new sectioning!
+        kickMessage = config.getString("kickMessage");
+
+        String worldPath = config.getString("worldPath");
+        worldFile = new File(worldPath);
+        backupFile = new File(worldPath + "/backup.tmp");
     }
 
     public void load() {
@@ -57,8 +64,8 @@ public class WorldLoadedState extends EventState {
     }
 
     @EventHandler
-    public void onWorldLoadEvent(WorldLoadEvent event){
-        if(event.getWorld().getWorldFolder().equals(worldFile))
+    public void onWorldLoadEvent(WorldLoadEvent event) {
+        if (event.getWorld().getWorldFolder().equals(worldFile))
             onLoad();
     }
 
@@ -103,23 +110,23 @@ public class WorldLoadedState extends EventState {
         }, 20D);
     }
 
-    private void print(Object message){
+    private void print(Object message) {
         consolePrinter.print("[WorldLoadedState] " + message, PrintLevel.HIGH);
     }
 
-    protected void onUnload(){
+    protected void onUnload() {
 
     }
 
-    protected void onLoad(){
+    protected void onLoad() {
 
     }
 
-    protected void onRevert(){
+    protected void onRevert() {
 
     }
 
-    protected void onBackup(){
+    protected void onBackup() {
 
     }
 }

@@ -1,17 +1,15 @@
 package me.exerosis.jager.engine.implementation.arenas.temp.games.spleef;
 
-import me.exerosis.jager.engine.core.implementation.PeriodImplementation;
+import me.exerosis.jager.engine.core.utilites.configuration.Configuration;
+import me.exerosis.jager.engine.core.utilites.printer.printers.ConsolePrinter;
+import me.exerosis.jager.engine.implementation.states.player.spectate.SpectateState;
 
 /**
  * Created by Exerosis.
  */
-public class SpleefInGamePeriod extends PeriodImplementation {
-    public SpleefInGamePeriod() {
+public class SpleefInGamePeriod extends SpleefGamePeriod {
 
-    }
-
-    @Override
-    public int getLength() {
-        return 600;
+    public SpleefInGamePeriod(ConsolePrinter console, Configuration config, SpectateState spectateState) {
+        super(console, config, spectateState);
     }
 }

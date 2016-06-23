@@ -18,6 +18,8 @@ public abstract class DestinationPrinter {
             _print(message);
     }
 
+    //TODO print signed!
+
     public PrintLevel getDefaultPrintLevel() {
         return defaultPrintLevel;
     }

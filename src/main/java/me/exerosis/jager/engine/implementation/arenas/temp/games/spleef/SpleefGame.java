@@ -2,10 +2,14 @@ package me.exerosis.jager.engine.implementation.arenas.temp.games.spleef;
 
 import me.exerosis.jager.engine.core.Period;
 import me.exerosis.jager.engine.core.implementation.GameImplementation;
-import me.exerosis.jager.engine.implementation.states.player.death.DeathState;
+import me.exerosis.jager.engine.core.utilites.configuration.Configuration;
+import me.exerosis.jager.engine.core.utilites.configuration.OnlineConfiguration;
+import me.exerosis.jager.engine.core.utilites.printer.printers.ConsolePrinter;
 import me.exerosis.jager.engine.implementation.states.player.spectate.SpectateState;
+import me.exerosis.jager.engine.implementation.states.scheduler.SchedulerState;
 import me.exerosis.jager.engine.implementation.states.worlds.WorldLoadedState;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -17,18 +21,23 @@ public class SpleefGame extends GameImplementation {
     private final SpleefInGamePeriod inGamePeriod;
     private final SpleefPostGamePeriod postGamePeriod;
 
-    private final DeathState deathState;
     private final WorldLoadedState worldLoadedState;
-    private final SpectateState spectateState;
+    private final Configuration config;
 
-    public SpleefGame(DeathState deathState, WorldLoadedState worldLoadedState, SpectateState spectateState) {
-        this.deathState = deathState;
-        this.worldLoadedState = worldLoadedState;
-        this.spectateState = spectateState;
+    public SpleefGame(
+            SpectateState spectateState,
+            ConsolePrinter console,
+            SchedulerState schedulerState,
+            String configURL
+            ) throws IOException {
 
-        this.preGamePeriod = new SpleefPreGamePeriod();
-        this.inGamePeriod = new SpleefInGamePeriod();
-        this.postGamePeriod = new SpleefPostGamePeriod();
+        config = new OnlineConfiguration(configURL);
+
+        this.worldLoadedState = new WorldLoadedState(console, config.getSection("world"), schedulerState);
+
+        this.preGamePeriod = new SpleefPreGamePeriod(console, config.getSection("periods.preGame"), spectateState);
+        this.inGamePeriod = new SpleefInGamePeriod(console, config.getSection("periods.inGame"), spectateState);
+        this.postGamePeriod = new SpleefPostGamePeriod(console, config.getSection("periods.postGame"), spectateState);
     }
 
     @Override
@@ -42,16 +51,12 @@ public class SpleefGame extends GameImplementation {
 
     @Override
     protected void onEnable() {
-        deathState.enable();
         worldLoadedState.enable();
-        spectateState.enable();
     }
 
     @Override
     protected void onDisable() {
-        deathState.disable();
         worldLoadedState.disable();
-        spectateState.disable();
     }
 
 
@@ -67,16 +72,11 @@ public class SpleefGame extends GameImplementation {
         return postGamePeriod;
     }
 
-
-    public DeathState getDeathState() {
-        return deathState;
+    public Configuration getConfig() {
+        return config;
     }
 
     public WorldLoadedState getWorldLoadedState() {
         return worldLoadedState;
-    }
-
-    public SpectateState getSpectateState() {
-        return spectateState;
     }
 }

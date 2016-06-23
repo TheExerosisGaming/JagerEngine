@@ -3,12 +3,21 @@ package me.exerosis.jager.engine.core.utilites;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
+import java.net.URL;
 
-public class StreamUtilities {
+public final class StreamUtilities {
 
     private StreamUtilities() {
     }
 
+    //New
+    public static Reader readFromURL(URL url) throws IOException {
+        return new BufferedReader(new InputStreamReader(url.openStream()));
+    }
+
+
+
+    //Old must be redone!
     public static void write(CharSequence path, InputStream stream, boolean close) {
         write(new File(path.toString()), stream, close);
     }

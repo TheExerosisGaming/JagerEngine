@@ -1,22 +1,19 @@
 package me.exerosis.jager.engine.implementation.arenas.temp.games.spleef;
 
-import me.exerosis.jager.engine.core.implementation.PeriodImplementation;
+import me.exerosis.jager.engine.core.utilites.configuration.Configuration;
+import me.exerosis.jager.engine.core.utilites.printer.printers.ConsolePrinter;
 import me.exerosis.jager.engine.implementation.states.player.disablers.MovementDisabledState;
 import me.exerosis.jager.engine.implementation.states.player.spectate.SpectateState;
 
 /**
  * Created by Exerosis.
  */
-public class SpleefPreGamePeriod extends PeriodImplementation {
+public class SpleefPreGamePeriod extends SpleefGamePeriod {
     private final MovementDisabledState movementDisabledState;
 
-    public SpleefPreGamePeriod(SpectateState spectateState) {
+    public SpleefPreGamePeriod(ConsolePrinter console, Configuration config, SpectateState spectateState) {
+        super(console, config, spectateState);
         movementDisabledState = new MovementDisabledState(spectateState);
-    }
-
-    @Override
-    protected void onTick() {
-
     }
 
     @Override
@@ -27,11 +24,6 @@ public class SpleefPreGamePeriod extends PeriodImplementation {
     @Override
     protected void onDisable() {
         movementDisabledState.disable();
-    }
-
-    @Override
-    public int getLength() {
-        return 600;
     }
 
     public MovementDisabledState getMovementDisabledState() {
